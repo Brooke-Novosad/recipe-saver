@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Recipes {
+public class Recipe {
     
 
     private String title;
@@ -14,7 +14,7 @@ public class Recipes {
 
     private String recipeUrl;
     
-    public Recipes(String title, String recipe, String recipeUrl) {
+    public Recipe(String title, String recipe, String recipeUrl) {
         this.title = title;
         this.recipe = recipe;
         this.recipeUrl = recipeUrl;

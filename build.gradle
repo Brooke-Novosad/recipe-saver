@@ -23,6 +23,12 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.seleniumhq.selenium:selenium-java:4.44.0'
+
+	implementation 'edu.stanford.nlp:stanford-corenlp:4.5.5'
+	implementation 'edu.stanford.nlp:stanford-corenlp:4.5.5:models'
+	implementation "edu.stanford.nlp:stanford-corenlp:4.5.5:models-english"
+    implementation "edu.stanford.nlp:stanford-corenlp:4.5.5:models-english-kbp"
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
