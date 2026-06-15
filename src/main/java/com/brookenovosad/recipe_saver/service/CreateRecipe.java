@@ -26,11 +26,11 @@ public class CreateRecipe {
     @Value("${instagram.password}")
     private String password;
 
-    public String createRecipe(String InstagramUrl) throws InterruptedException {
+    public Recipe createRecipe(String InstagramUrl, String recipeTitle) throws InterruptedException {
         if (InstagramUrl == null || InstagramUrl.isBlank()) {
             throw new IllegalArgumentException("InstagramUrl must not be empty");
         }
-
+        Recipe newRecipe = null;
         driver = new ChromeDriver();
         try {
             driver.get(InstagramUrl);
@@ -57,12 +57,13 @@ public class CreateRecipe {
                 "]";
 
             List<WebElement> match = driver.findElements(By.xpath(xpath));
-            
+
             //Check if we can find recipe
             if (!match.isEmpty()) {
                 String fullText = match.get(0).getText();
                 System.out.println(fullText);
-                Recipe newRecipe = ExtractRecipe.extractRecipe(fullText, InstagramUrl);
+                newRecipe = ExtractRecipe.extractRecipe(fullText, InstagramUrl);
+                newRecipe.setTitle(recipeTitle);
             } else {
                 System.out.println("sorry we can't get the recipe");
             }
@@ -70,6 +71,6 @@ public class CreateRecipe {
         } finally {
             driver.quit();
         }
-        return null;
+        return newRecipe;
     }
 }
