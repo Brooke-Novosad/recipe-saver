@@ -1,47 +1,54 @@
-import React, { Component } from "react"
-
+import React, { Component } from "react";
 
 export class CreateRecipeInput extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      submitted: false
-    };
-
-    this.handleChange = this.handleChange.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleUrlChange = this.handleUrlChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    if (this.props.onChange) {
-      this.props.onChange(event);
+  handleTitleChange(event) {
+    if (this.props.onChange1) {
+      this.props.onChange1(event);
+    }
+  }
+
+  handleUrlChange(event) {
+    if (this.props.onChange2) {
+      this.props.onChange2(event);
     }
   }
 
   handleSubmit(event) {
     event.preventDefault();
     if (this.props.onSubmit) {
-      this.props.onSubmit(this.props.value);
+      this.props.onSubmit(event);
     }
-    this.setState({ submitted: true });
   }
 
   render() {
-    if (this.state.submitted) {
-      return null;
-    }
-
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          {this.props.label || "Title"}:
+          {this.props.label1 || "Title"}:
           <input
             type="text"
-            value={this.props.value || ""}
-            onChange={this.handleChange}
+            value={this.props.value1 || ""}
+            onChange={this.handleTitleChange}
           />
         </label>
-        <input type="submit" value="Submit" />
+        <br />
+        <label>
+          {this.props.label2 || "URL"}:
+          <input
+            type="text"
+            value={this.props.value2 || ""}
+            onChange={this.handleUrlChange}
+          />
+        </label>
+        <br />
+        <button type="submit">Submit</button>
       </form>
     );
   }

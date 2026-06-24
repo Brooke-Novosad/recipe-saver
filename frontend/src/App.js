@@ -1,12 +1,15 @@
 import './App.css';
 import React, { Component } from "react";
 import { CreateRecipeInput } from "./components/CreateRecipeInput";
+import { RecipeCards } from './components/RecipeCards';
 
 class App extends Component {
   state = {
-    recipe: {},
     InputTitle: "",
-    InputUrl: ""
+    InputUrl: "",
+    savedTitle: "",
+    savedUrl: "",
+    submitted: false
   };
 
   handleTitleChange = (e) => {
@@ -17,42 +20,38 @@ class App extends Component {
     this.setState({ InputUrl: e.target.value });
   };
 
-  async componentDidMount() {
-    const response = await fetch('/createRecipe?InstagramUrl=https://www.instagram.com/p/DZNUfEUBw6Y/&recipeTitle=cheeseburger');
-    const body = await response.json();
-    this.setState({recipe: body});
-  }
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.setState((state) => ({
+      submitted: true,
+      savedTitle: state.InputTitle,
+      savedUrl: state.InputUrl
+    }));
+  };
 
   render() {
-    const { recipe, InputTitle, InputUrl } = this.state;
+    const { recipe, InputTitle, InputUrl, savedTitle, savedUrl, submitted } = this.state;
     return (
       <div className="App">
         <header className="App-header">
           <div className="App-intro">
-            <CreateRecipeInput
-              label="Title"
-              value={InputTitle}
-              onChange={this.handleTitleChange}
-            />
-            <CreateRecipeInput
-              label="Instagram URL"
-              value={InputUrl}
-              onChange={this.handleUrlChange}
-            />
-            <p> the title is {InputTitle}</p>
-            <p> the url is {InputUrl}</p>
-            {/* <h2>Recipe</h2>
-            <div key={recipe.title}>
-              <h3>{recipe.title}</h3>
-              <h4>Ingredients</h4>
-              {recipe.ingredients && recipe.ingredients.map((ing, idx) => (
-                <li key={idx}>{ing.amount} {ing.ingredient}</li>
-              ))}
-              <h4>Instructions:</h4>
-              {recipe.instructions && recipe.instructions.map((instr, idx) => (
-                <li key={idx}>{instr}</li>
-              ))}
-            </div>*/}
+            {!submitted && (
+              <CreateRecipeInput
+                label1="Title"
+                label2="Instagram URL"
+                value1={InputTitle}
+                value2={InputUrl}
+                onChange1={this.handleTitleChange}
+                onChange2={this.handleUrlChange}
+                onSubmit={this.handleSubmit}
+              />
+            )}
+
+            {submitted && (
+              <div>
+                <RecipeCards savedTitle={savedTitle} savedUrl= {savedUrl}/>
+              </div>
+            )}
           </div>
         </header>
       </div>
