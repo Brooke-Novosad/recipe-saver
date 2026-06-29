@@ -101,10 +101,6 @@ public class ExtractRecipe {
             ing.add(extractIngredients(i));
         }
         
-        System.out.println("--- Extracted Ingredients ---");
-        ingredients.forEach(System.out::println);
-        System.out.println("--- Extracted Instructions ---");
-        instructions.forEach(System.out::println);
         //make user input the title
         return new Recipe("", ing, instructions, instagramUrl);
     }

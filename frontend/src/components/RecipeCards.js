@@ -7,16 +7,22 @@ export class RecipeCards extends Component {
     };
 
     async componentDidMount() {
-        const { savedUrl, savedTitle } = this.props;
+        const { savedUrl, savedTitle, recipeBody, onRecipeLoaded, index } = this.props;
+        if (recipeBody) {
+            this.setState({ recipe: recipeBody, loadedRecipe: true });
+            return;
+        }
+
         if (!this.state.loadedRecipe) {
             const url = `/createRecipe?InstagramUrl=${savedUrl}&recipeTitle=${savedTitle}`;       
             const response = await fetch(url);
             const body = await response.json();
             this.setState({recipe: body, loadedRecipe: true});
+            if (onRecipeLoaded) {
+                onRecipeLoaded(index, body);
+            }
         }
-        
     }
-
 
     render() {
         const {recipe} = this.state;

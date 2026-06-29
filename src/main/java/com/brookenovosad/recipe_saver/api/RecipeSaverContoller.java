@@ -23,7 +23,7 @@ public class RecipeSaverContoller {
         if (recipe == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
-        System.out.println("Recipe title is: " + recipe.getTitle() + "\n Recipe Ingredients are: " + recipe.getIngredients() + "\n Recipe Instructions are: " + recipe.getInstructions());
+        
         return ResponseEntity.ok(recipe);
     }   
 }
