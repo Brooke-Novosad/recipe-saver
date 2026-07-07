@@ -1,4 +1,6 @@
 .Create-recipe-button {
-    top: 10px;
-    left: 350px;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
 }

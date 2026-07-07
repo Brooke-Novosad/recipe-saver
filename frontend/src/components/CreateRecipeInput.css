@@ -1,0 +1,29 @@
+.create-recipe-form {
+  position: fixed;
+  top: 4rem;
+  left: 1rem;
+  z-index: 1000;
+  background: white;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.create-recipe-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.create-recipe-form input {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  box-sizing: border-box;
+}
+
+.create-recipe-form button {
+  margin-top: 0.5rem;
+}

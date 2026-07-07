@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./CreateRecipeInput.css";
 
 export class CreateRecipeInput extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ export class CreateRecipeInput extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="create-recipe-form" onSubmit={this.handleSubmit}>
         <label>
           {this.props.label1 || "Title"}:
           <input
